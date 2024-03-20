@@ -1,26 +1,36 @@
 #!/usr/bin/python3
+# -----------------------------------------------------------
+# Python program that:
+# demonstrates how to import the variable a from the file
+# variable_load_5.py and handles basic operations
+#
+# (C) 2022 Igbinijesu Samuel, Lagos, Nigeria
+# email igbinijesusamuel@gmail.com
+# -----------------------------------------------------------
+
+# Import sys module to access argv
+from sys import argv
+
+# Import the functions: add, sub, mul, div
+from main import add, sub, mul, div
+
+operators = ["+", "-", "*", "/"]
+arg_len = len(argv)
+
 if __name__ == "__main__":
-    import sys
-
-    nargs = len(sys.argv) - 1
-    if nargs != 3:
+    if (arg_len - 1) < 3:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        sys.exit(1)
-
-    op = sys.argv[2]
-    if op != '+' and op != '-' and op != '*' and op != '/':
+        exit(1)
+    elif argv[2] not in operators:
         print("Unknown operator. Available operators: +, -, * and /")
-        sys.exit(1)
-
-    from calculator_1 import add, sub, mul, div
-    a = int(sys.argv[1])
-    b = int(sys.argv[3])
-
-    if op == '+':
-        print("{} + {} = {}".format(a, b, add(a, b)))
-    elif op == '-':
-        print("{} - {} = {}".format(a, b, sub(a, b)))
-    elif op == '*':
-        print("{} * {} = {}".format(a, b, mul(a, b)))
+        exit(1)
     else:
-        print("{} / {} = {}".format(a, b, div(a, b)))
+        a, b = int(argv[1]), int(argv[3])
+        if argv[2] == "+":
+            print('{:d} + {:d} = {:d}'.format(a, b, add(a, b)))
+        elif argv[2] == "-":
+            print('{:d} - {:d} = {:d}'.format(a, b, sub(a, b)))
+        elif argv[2] == "*":
+            print('{:d} * {:d} = {:d}'.format(a, b, mul(a, b)))
+        else:
+            print('{:d} / {:d} = {:d}'.format(a, b, div(a, b)))
